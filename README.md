@@ -28,6 +28,12 @@ looked at the dataset to get a sense of what is in there. Since this is a semati
 
 ![Data summary](./images/data%20stats.png)
 
+- Spent a lot of time on data exploration to make sure the data we use to feed this recommender system is meaningful. This exploration phase included looking at what columns had missing values, looking into those columns and deciding if we need to do something to enahnce the semantic meaning of the data or if it was too noisy or random that we would not include it in the system.
+
+Also in the description column, we see that some books descriptions are not very long. This could be a problem for the semantic meaning of the data. We will need to do something about this. When we looked at the distribution of the desceiption column we find that we have an even distribution so there was no natural break point for the description length. So we had to decide a breakpoint ourselves. After doing some digging into the column we decided about 25 words was a good breakpoint.
+
+Since the substitle column did not have a lot of data, the column iteself is not that useful. So we decided to create a new columns and append those that have a subtitle to the parent title since that information is part of the book name.
+
 ### Learnings
 
 - I used cursor chat a lot, it is very convenient to have a chat bar

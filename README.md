@@ -72,6 +72,26 @@ query_docs
 
 This will return the top 10 most similar books to the query.
 
+This is the basic recommender setup. We cna even roll it into a function to make it easier to use.
+
+```python
+def retrieve_semantic_recommendations(query: str, top_k: int = 10) -> pd.DataFrame:
+    recs = db_books.similarity_search(query, k=50)
+
+    books_list = []
+
+    for i in range(0, len(recs)):
+        books_list += [int(recs[i].page_content.strip('"').split()[0])]
+
+    return books[books['isbn13'].isin(books_list)].head(top_k)
+```
+
+We would need to refine the system a little more
+
+#### Text Classification
+
+We are creating zero shot classification model to classify the books into categories using the LLM. Zero shot classification means we take a pre-trained model and use it to classify the books into categories without any additional training data. All we do is provide the model with a prompt and the text to classify.
+
 
 ### Learnings
 

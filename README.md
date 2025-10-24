@@ -17,6 +17,7 @@ Potentially create a react frontend
 - transformers hugging face
 - gradio 
 - ipywidgets
+- hugging face - Has an open source branch that is responsible for hosting and distributing open source models
 
 #### Data Exploration
 
@@ -90,7 +91,36 @@ We would need to refine the system a little more
 
 #### Text Classification
 
-We are creating zero shot classification model to classify the books into categories using the LLM. Zero shot classification means we take a pre-trained model and use it to classify the books into categories without any additional training data. All we do is provide the model with a prompt and the text to classify.
+We are creating zero shot classification model to classify the books into categories using the LLM. Zero shot classification means we take a pre-trained model and use it to classify the books into categories without being explicitly trained to do so. All we do is provide the model with a prompt and the text to classify.
+
+We want to use the book categories to classify the books into categories. so we first take a look at the distribution of the categories to see if we need to do anything about it. The distribution is too large and we want to barrell the categories into Fiction, Non-Fiction, Children's Fiction and Children's Non-Fiction.
+
+![Distribution of categories](./images/category-distribution.png)
+
+As we can see from the distribution, we have a lot of categories and we want to barrell them into a few categories. To do this we would have to do some mapping of the categories to the new categories.
+
+```python
+category_mapping = {'Fiction' : "Fiction",
+ 'Juvenile Fiction': "Children's Fiction",
+ 'Biography & Autobiography': "Nonfiction",
+ 'History': "Nonfiction",
+ 'Literary Criticism': "Nonfiction",
+ 'Philosophy': "Nonfiction",
+ 'Religion': "Nonfiction",
+ 'Comics & Graphic Novels': "Fiction",
+ 'Drama': "Fiction",
+ 'Juvenile Nonfiction': "Children's Nonfiction",
+ 'Science': "Nonfiction",
+ 'Poetry': "Fiction"}
+```
+
+This gives us something more usable for classification. We can now use the simple_categories column to classify the books into categories.
+
+![Distribution of simple categories](./images/simple-category-distribution.png)
+
+Now we can see that we have a more balanced distribution of categories.
+
+We can then look on [hugging face](https://huggingface.co/tasks/zero-shot-classification) to look for a zero shot classification model that can be used to classify the books into categories.
 
 
 ### Learnings

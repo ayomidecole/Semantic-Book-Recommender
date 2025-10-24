@@ -120,7 +120,9 @@ This gives us something more usable for classification. We can now use the simpl
 
 Now we can see that we have a more balanced distribution of categories.
 
-We can then look on [hugging face](https://huggingface.co/tasks/zero-shot-classification) to look for a zero shot classification model that can be used to classify the books into categories.
+We can then look on [hugging face](https://huggingface.co/tasks/zero-shot-classification) to look for a zero shot classification model that can be used to classify the books into categories. Also we can interact with the models using [hugging face's transformers package](https://huggingface.co/docs/transformers/en/index). 
+
+We are going to use the bart-large-mnli model from hugging face. This model is a popular large language model that is trained on a large dataset of text and is able to classify the books into categories.
 
 
 ### Learnings

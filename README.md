@@ -62,6 +62,16 @@ We then chreate a Chroma vector database and store the document chunks embedding
 db_books = Chroma.from_documents(docs, embedding=OpenAIEmbeddings())
 ```
 
+We can then use the `similarity_search` method from the vector database to find the most similar books to a given query.
+
+```python
+query = 'What are the best history books?'
+query_docs = db_books.similarity_search(query, k=10)
+query_docs
+```
+
+This will return the top 10 most similar books to the query.
+
 
 ### Learnings
 
